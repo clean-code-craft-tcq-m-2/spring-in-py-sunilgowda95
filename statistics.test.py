@@ -18,6 +18,17 @@ def LEDAlert():
   la = LEDAlertClass()
   return la
 
+class StatsAlerterClass:
+  def __init__(self, maTh):
+    self.maxThd = maTh
+  def checkAndAlert(self, numbers):
+    if max(numbers) > self.maxThd:
+      print("test_raise_alerts_when_max_above_threshold")
+    
+def StatsAlerter(maxThd, emailLedList):
+  sa = StatsAlerterClass(maxThd)
+  return sa
+
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
     computedStats = statistics.calculateStats([1.5, 8.9, 3.2, 4.5])
