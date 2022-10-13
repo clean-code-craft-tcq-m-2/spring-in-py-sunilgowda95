@@ -1,5 +1,22 @@
 import unittest
 import statistics
+import math
+
+class EmailAlertClass:
+  emailSent = True
+
+class LEDAlertClass:
+  ledGlows = True
+  
+def EmailAlert():
+  print("EmailAlert")
+  ema = EmailAlertClass()
+  return ema
+
+def LEDAlert():
+  print("LEDAlert")
+  la = LEDAlertClass()
+  return la
 
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
@@ -15,6 +32,9 @@ class StatsTest(unittest.TestCase):
     # nan (not-a-number), as defined in the math package
     # Design the assert here.
     # Use nan and isnan in https://docs.python.org/3/library/math.html
+    self.assertEqual(computedStats["avg"], math.nan, "not a valid avg output")
+    self.assertEqual(computedStats["max"], math.nan, "not a valid max output")
+    self.assertEqual(computedStats["min"], math.nan, "not a valid min output")
 
   def test_raise_alerts_when_max_above_threshold(self):
     emailAlert = EmailAlert()
@@ -25,11 +45,6 @@ class StatsTest(unittest.TestCase):
     self.assertTrue(emailAlert.emailSent)
     self.assertTrue(ledAlert.ledGlows)
     
-  def EmailAlert():
-    print("EmailAlert")
-  
-  def LEDAlert():
-    print("LEDAlert")
-
+    
 if __name__ == "__main__":
   unittest.main()
